@@ -23,10 +23,11 @@ public class Laser : MonoBehaviour
         //if laser position > 8 on the y
         //destroy object
 
-        if (transform.position.y > 7.1)
+        if (transform.position.y > 7.1f)
         {
             Debug.Log("destroy");
-            Destroy(gameObject);
+            //this script attached to you can say this.gameObject, gameObject is fine too but this. is explicit
+            Destroy(this.gameObject);
 
         }
     }
