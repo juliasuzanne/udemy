@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     //optional a value assigned to a variable
     [SerializeField]
     private float _speed = 4f; //default value of 0
+    [SerializeField]
+    private GameObject _laserPrefab;
 
 
 
@@ -33,7 +35,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("space");
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            //Quaternion.identity = default rotation of the prefab
         }
 
     }
