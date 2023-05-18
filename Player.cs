@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     //every variable has a name
     //optional a value assigned to a variable
     [SerializeField]
-    private float _speed = 4f; //default value of 0
+    private float _speed = 4f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -32,19 +32,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-
-        //if I hit the space key
-        //spawn gameObject
-
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            _canFire = Time.time + _fireRate;
-            //Quaternion.identity = default rotation of the prefab
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
-            //Time.time is how long the game has been running
-
-
+            FireLaser();
         }
+        
+
 
     }
 
@@ -62,8 +55,6 @@ public class Player : MonoBehaviour
         //above could be turned into one line of code, horizontal and vertical inputs as numbers in vector parenthesis
 
         //player bounds
-        //pseudo code - if player position on the y is greater than zero,
-        //y pos = 0
 
         //to clamp instead of using the following if/else:
         //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3, 0), transform.position.z)
@@ -87,6 +78,18 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11, transform.position.y, transform.position.z);
         }
+
+    }
+
+    void FireLaser() {
+        
+            _canFire = Time.time + _fireRate;
+            //Quaternion.identity = default rotation of the prefab
+            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+            //Time.time is how long the game has been running
+
+
+        
 
     }
 }
