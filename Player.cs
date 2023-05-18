@@ -26,8 +26,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame 60 frames/sec
     void Update()
     {
+        CalculateMovement();
 
-        //local variable, store input to access below
+        //if I hit the space key
+        //spawn gameObject
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("space");
+        }
+
+    }
+
+    void CalculateMovement()
+    {
+              //local variable, store input to access below
         //Get hierarchy terms from Edit/Project Settings/Input Manager
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -41,6 +54,9 @@ public class Player : MonoBehaviour
         //player bounds
         //pseudo code - if player position on the y is greater than zero,
         //y pos = 0
+
+        //to clamp instead of using the following if/else:
+        //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3, 0), transform.position.z)
 
         if (transform.position.y > 0)
         {
@@ -61,8 +77,6 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11, transform.position.y, transform.position.z);
         }
-
-        
 
     }
 }
