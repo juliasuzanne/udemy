@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         _lives -= 1;
         //check if dead
         //destroy
-        if (lives < 1)
+        if (_lives < 1)
         {
             Destroy(this.gameObject);
         }
