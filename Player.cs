@@ -94,4 +94,9 @@ public class Player : MonoBehaviour
         
 
     }
+
+    public void Damage()
+    {
+        _lives -= 1;
+    }
 }
