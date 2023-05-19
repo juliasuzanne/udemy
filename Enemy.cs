@@ -45,6 +45,12 @@ public class Enemy : MonoBehaviour
 
         //if other is laser
         //destroy enemy and laser (laser first)
+        if (other.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+
 
 
     }
