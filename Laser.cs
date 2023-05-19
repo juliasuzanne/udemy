@@ -25,7 +25,7 @@ public class Laser : MonoBehaviour
 
         if (transform.position.y > 7.1f)
         {
-            Debug.Log("destroy");
+            //Debug.Log("destroy");
             //this script attached to you can say this.gameObject, gameObject is fine too but this. is explicit
             Destroy(this.gameObject);
 
