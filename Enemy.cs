@@ -37,6 +37,12 @@ public class Enemy : MonoBehaviour
         //damage player first so the script will still run.
         Debug.Log(other.tag);
 
+        if (other.tag == "Player")
+        {
+            Debug.Log("Player is Damaged");
+            Destroy(this.gameObject);
+        }
+
         //if other is laser
         //destroy enemy and laser (laser first)
 
