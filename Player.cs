@@ -98,5 +98,11 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         _lives -= 1;
+        //check if dead
+        //destroy
+        if (lives < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
