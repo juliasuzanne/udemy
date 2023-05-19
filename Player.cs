@@ -89,17 +89,12 @@ public class Player : MonoBehaviour
             //Quaternion.identity = default rotation of the prefab
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
             //Time.time is how long the game has been running
-
-
-        
-
     }
 
     public void Damage()
     {
         _lives -= 1;
-        //check if dead
-        //destroy
+
         if (_lives < 1)
         {
             Destroy(this.gameObject);

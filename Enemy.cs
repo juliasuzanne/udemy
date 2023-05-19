@@ -31,9 +31,6 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other.transform.name);
-        //if other is Player
-        //damage the Player
-        //destroy this (enemy)
         //damage player first so the script will still run.
         Debug.Log(other.tag);
 
