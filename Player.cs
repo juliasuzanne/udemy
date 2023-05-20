@@ -100,11 +100,10 @@ public class Player : MonoBehaviour
     }
 
     public void TripleShotActivate(){
-            StartCoroutine("TripleShot");
+        StartCoroutine("TripleShot");
     }
 
     IEnumerator TripleShot(){
-
         isTripleShotActive = true;
         yield return new WaitForSeconds(5f);
         isTripleShotActive = false;

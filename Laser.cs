@@ -28,6 +28,7 @@ public class Laser : MonoBehaviour
             //Debug.Log("destroy");
             //this script attached to you can say this.gameObject, gameObject is fine too but this. is explicit
             Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
 
         }
     }

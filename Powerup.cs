@@ -33,6 +33,7 @@ public class Powerup : MonoBehaviour
 
         if (transform.position.y < -8)
         {
+            //
             Destroy(this.gameObject);
         }
     }
