@@ -10,10 +10,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     private bool _stopSpawning = false;
+
+    [SerializeField]
+    private GameObject _powerUp;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("SpawnRoutine");
+        StartCoroutine("SpawnPowerUpRoutine");
     }
 
     // Update is called once per frame
@@ -40,6 +44,16 @@ public class SpawnManager : MonoBehaviour
         // instantiate referenced object, enemy prefab
         // yield, wait for 5 seconds
 
+    }
+
+    IEnumerator SpawnPowerUpRoutine()
+    {
+        while(_stopSpawning == false)
+        {
+        Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-3f, 3), 7, 0);
+        GameObject newPowerUp = Instantiate(_powerUp, posToSpawnPowerUp, Quaternion.identity);
+        yield return new WaitForSeconds(10f);
+        }
     }
 
     public void OnPlayerDeath()
