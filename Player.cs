@@ -21,6 +21,13 @@ public class Player : MonoBehaviour
     //store gameobject in reference
     private SpawnManager _spawnManager;
 
+    //bool for isTripleShotActive
+    //where do we handle it? Inside fire laser.
+    bool isTripleShotActive = false;
+
+    [SerializeField]
+    private GameObject _tripleShot;
+
 
     // Start is called before the first frame update
     void Start()
@@ -92,12 +99,36 @@ public class Player : MonoBehaviour
 
     }
 
+    public void TripleShotActivate(){
+            StartCoroutine("TripleShot");
+    }
+
+    IEnumerator TripleShot(){
+
+        isTripleShotActive = true;
+        yield return new WaitForSeconds(5f);
+        isTripleShotActive = false;
+
+    }
+
     void FireLaser() {
         
             _canFire = Time.time + _fireRate;
             //Quaternion.identity = default rotation of the prefab
-            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+            
+            if (isTripleShotActive == false)
+            {
+                 Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+
+            }
+            else {
+                Instantiate(_tripleShot, transform.position + new Vector3(-.770f, 0.16f, 0), Quaternion.identity);
+
+            }
             //Time.time is how long the game has been running
+
+            //if triple shot active is true, fire three lasers instead of one
+
     }
 
     public void Damage()
