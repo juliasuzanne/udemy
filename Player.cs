@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
+    //store gameobject in reference
+    private SpawnManager _spawnManager;
 
 
     // Start is called before the first frame update
@@ -28,6 +30,13 @@ public class Player : MonoBehaviour
         // access other components when dragged in
         transform.position = new Vector3(0, 0, 0);
         //vector 3 defines all position types
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        //getting access to spawn manager script
+        if (_spawnManager == null)
+        {
+            Debug.LogError("The Spawn Manager is NULL");
+        }
+
     }
 
     // Update is called once per frame 60 frames/sec
@@ -52,7 +61,7 @@ public class Player : MonoBehaviour
 
         //Vector3.right = new Vector3(1, 0, 0), it's a shortcut
         //convert per frame to per second, time it takes to convert last frame to current frame
-        transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(-_speed, 0, 0) * horizontalInput * Time.deltaTime);
         transform.Translate(new Vector3(0, _speed, 0) * verticalInput * Time.deltaTime);
         //above could be turned into one line of code, horizontal and vertical inputs as numbers in vector parenthesis
 
@@ -97,6 +106,8 @@ public class Player : MonoBehaviour
 
         if (_lives < 1)
         {
+            //Communicate with Spawn Manager to stop spawning
+            _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
     }
