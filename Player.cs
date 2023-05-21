@@ -24,9 +24,11 @@ public class Player : MonoBehaviour
     //bool for isTripleShotActive
     //where do we handle it? Inside fire laser.
     bool isTripleShotActive = false;
+    bool isShieldActive = false;
 
     [SerializeField]
     private GameObject _tripleShot;
+
 
 
     // Start is called before the first frame update
@@ -69,6 +71,15 @@ public class Player : MonoBehaviour
         _speed += 5f;
         yield return new WaitForSeconds(5f);
         _speed -= 5f;
+    }
+
+    public void ShieldsPowerUp(){
+        StartCoroutine("ShieldsWorking");
+    }
+
+    IEnumerator ShieldsWorking(){
+        isShieldActive = true;
+        yield return new WaitForSeconds(20f);
     }
 
     void CalculateMovement()
@@ -144,6 +155,12 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        if (isShieldActive == true)
+        {
+            isShieldActive = false;
+        }
+        else if (isShieldActive == false)
+        {
         _lives -= 1;
 
         if (_lives < 1)
@@ -151,6 +168,7 @@ public class Player : MonoBehaviour
             //Communicate with Spawn Manager to stop spawning
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
+        }
         }
     }
 }

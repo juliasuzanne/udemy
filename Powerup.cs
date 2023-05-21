@@ -64,7 +64,7 @@ public class Powerup : MonoBehaviour
                     Destroy(this.gameObject);
                     break;
                 case 2:
-                    Debug.Log("Shield");
+                    _player.ShieldsPowerUp();
                     Destroy(this.gameObject);
                     break;
             }
