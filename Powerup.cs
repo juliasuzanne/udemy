@@ -9,6 +9,13 @@ public class Powerup : MonoBehaviour
 
     private Player _player;
 
+    //ID for powerups to make script modular
+    //0 = Triple Shot
+    //1 = Speed
+    //2 = Shields
+    [SerializeField]
+    private int powerupID;
+
 
     // Start is called before the first frame update
     void Start()
