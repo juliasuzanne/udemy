@@ -14,7 +14,7 @@ public class Powerup : MonoBehaviour
     //1 = Speed
     //2 = Shields
     [SerializeField]
-    private int powerupID;
+    private int _powerupID;
 
 
     // Start is called before the first frame update
@@ -52,8 +52,20 @@ public class Powerup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            if (_powerupID == 0)
+            {
             _player.TripleShotActivate();
             Destroy(this.gameObject);
+            }
+            else if (_powerupID == 1)
+            {
+            Debug.Log("Speed Boost");
+            }
+            else if (_powerupID == 2)
+            {
+            Debug.Log("Shield");
+            }
+
         }
     }
 }
