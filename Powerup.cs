@@ -60,7 +60,7 @@ public class Powerup : MonoBehaviour
                     Destroy(this.gameObject);
                     break;
                 case 1:
-                    Debug.Log("Speed Boost");
+                    _player.SpeedBoost();
                     Destroy(this.gameObject);
                     break;
                 case 2:

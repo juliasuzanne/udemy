@@ -59,6 +59,18 @@ public class Player : MonoBehaviour
 
     }
 
+    public void SpeedBoost()
+    {
+        StartCoroutine("SpeedBoostActivate");
+    }
+
+    IEnumerator SpeedBoostActivate()
+    {
+        _speed += 5f;
+        yield return new WaitForSeconds(5f);
+        _speed -= 5f;
+    }
+
     void CalculateMovement()
     {
               //local variable, store input to access below
