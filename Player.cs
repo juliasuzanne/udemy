@@ -26,8 +26,12 @@ public class Player : MonoBehaviour
     bool isTripleShotActive = false;
     bool isShieldActive = false;
 
+    //variable reference to Shield Visualizer
     [SerializeField]
     private GameObject _tripleShot;
+
+    [SerializeField]
+    private GameObject _shieldVisualizer;
 
 
 
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         //vector 3 defines all position types
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _shieldVisualizer.SetActive(false);
         //getting access to spawn manager script
         if (_spawnManager == null)
         {
@@ -79,7 +84,11 @@ public class Player : MonoBehaviour
 
     IEnumerator ShieldsWorking(){
         isShieldActive = true;
+        _shieldVisualizer.SetActive(true);
         yield return new WaitForSeconds(20f);
+        isShieldActive = false;
+        _shieldVisualizer.SetActive(false);
+
     }
 
     void CalculateMovement()
@@ -158,6 +167,8 @@ public class Player : MonoBehaviour
         if (isShieldActive == true)
         {
             isShieldActive = false;
+            _shieldVisualizer.SetActive(false);
+
         }
         else if (isShieldActive == false)
         {
