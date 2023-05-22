@@ -184,4 +184,11 @@ public class Player : MonoBehaviour
         }
         }
     }
+
+    public void ScorePoints(){
+        _score +=10;
+    }
+
+    //add ten to score
+    //communicate to UI manager
 }
