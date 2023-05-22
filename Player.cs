@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private int _lives = 3;
     //store gameobject in reference
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private int _score;
 
     //bool for isTripleShotActive
     //where do we handle it? Inside fire laser.
