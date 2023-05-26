@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
+    private UIManager _UIManager;
+
     //bool for isTripleShotActive
     //where do we handle it? Inside fire laser.
     bool isTripleShotActive = false;
@@ -46,11 +48,18 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         //vector 3 defines all position types
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
         _shieldVisualizer.SetActive(false);
         //getting access to spawn manager script
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL");
+        }
+
+        if (_UIManager == null)
+        {
+            Debug.LogError("The UI Manager is NULL");
         }
 
     }
@@ -185,8 +194,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ScorePoints(){
-        _score +=10;
+    public void ScorePoints()
+    {
+        _UIManager.AddPoints(10);
     }
 
     //add ten to score
