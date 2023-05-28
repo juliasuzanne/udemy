@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
         {
             while(this != null){
             _animator.SetTrigger("OnEnemyDeath");
+            _enemySpeed = 0;
             yield return new WaitForSeconds(1.5f);
             Destroy(this.gameObject);}
         }
