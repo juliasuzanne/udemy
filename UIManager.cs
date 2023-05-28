@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -15,16 +16,23 @@ public class UIManager : MonoBehaviour
     private Text _gameOverText;
 
     [SerializeField]
+    private Text _restartText;
+
+    [SerializeField]
     private Image _livesImage;
 
     [SerializeField]
     private Sprite[] _lifeSprites;
+
+    private bool _gameOver = false;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         _gameOverText.gameObject.SetActive(false);
+        _restartText.gameObject.SetActive(false);
         _livesImage.sprite = _lifeSprites[3];
         _score = 50;
         _scoreText.text = "Score: " + _score;
@@ -34,7 +42,13 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         _scoreText.text = "Score: " + _score;
+
+        if (_gameOver == true)
+        {if (Input.GetKeyDown(KeyCode.R)){
+            SceneManager.LoadScene("Space");
+        }}
         
     }
 
@@ -45,7 +59,10 @@ public class UIManager : MonoBehaviour
 
     public void PlayerDeath()
     {
+        _restartText.gameObject.SetActive(true);
+        _gameOver = true;
         StartCoroutine("GameOverFlicker");
+
     }
 
     IEnumerator GameOverFlicker(){

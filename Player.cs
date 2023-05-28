@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _canFire = -1f;
     [SerializeField]
-    private int _lives = 3;
+    private int _lives = 1;
     //store gameobject in reference
     private SpawnManager _spawnManager;
     [SerializeField]
