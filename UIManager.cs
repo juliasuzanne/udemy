@@ -45,7 +45,18 @@ public class UIManager : MonoBehaviour
 
     public void PlayerDeath()
     {
-        _gameOverText.gameObject.SetActive(true);
+        StartCoroutine("GameOverFlicker");
+    }
+
+    IEnumerator GameOverFlicker(){
+        while(true)
+       { _gameOverText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
+        _gameOverText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.25f);}
+
+
+
     }
 
     public void AddPoints(int numToAdd){
