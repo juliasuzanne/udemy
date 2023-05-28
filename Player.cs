@@ -190,6 +190,7 @@ public class Player : MonoBehaviour
         {
             //Communicate with Spawn Manager to stop spawning
             _spawnManager.OnPlayerDeath();
+            _UIManager.PlayerDeath();
             Destroy(this.gameObject);
         }
         }
