@@ -16,8 +16,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("SpawnRoutine");
-        StartCoroutine("SpawnPowerUpRoutine");
+
     }
 
     // Update is called once per frame
@@ -26,12 +25,18 @@ public class SpawnManager : MonoBehaviour
 
     }
 
+    public void startSpawn(){
+        StartCoroutine("SpawnRoutine");
+        StartCoroutine("SpawnPowerUpRoutine");
+    }
+
     //spawn game objects every 5 seconds
     //create a coroutine of type IEnumerator -- Yield Events
     //while loop
 
     IEnumerator SpawnRoutine()
     {
+        yield return new WaitForSeconds(3f);
         while (_stopSpawning == false)
         {            
         Vector3 posToSpawn = new Vector3(Random.Range(-7f, 7f), 7, 0);
@@ -48,6 +53,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerUpRoutine()
     {
+        yield return new WaitForSeconds(3f);
         while(_stopSpawning == false)
         {
         Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-3f, 3), 7, 0);
