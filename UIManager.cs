@@ -26,6 +26,11 @@ public class UIManager : MonoBehaviour
 
     private bool _gameOver = false;
 
+    [SerializeField]
+    private GameObject _panel;
+
+    GameManager _gameManager;
+
 
 
     // Start is called before the first frame update
@@ -33,6 +38,14 @@ public class UIManager : MonoBehaviour
     {
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
+        _panel.gameObject.SetActive(false);
+
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        if (_gameManager == null){
+            Debug.LogError("The GameManager is NULL");
+        }
+        
         _livesImage.sprite = _lifeSprites[3];
         _score = 50;
         _scoreText.text = "Score: " + _score;
@@ -49,7 +62,23 @@ public class UIManager : MonoBehaviour
         {if (Input.GetKeyDown(KeyCode.R)){
             SceneManager.LoadScene("Space");
         }}
+
+        if (Input.GetKeyDown(KeyCode.P)){
+            _panel.SetActive(true);
+            _gameManager.PauseGame();
+        }
         
+    }
+
+    public void ResumeGame(){
+        _panel.SetActive(false);
+        _gameManager.ResumeGame();
+    }
+
+    public void MainMenu(){
+        _panel.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
+
     }
 
     public void UpdateLives(int currentLives)
