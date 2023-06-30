@@ -32,6 +32,7 @@ public class Asteroid : MonoBehaviour
             _spawnManager.startSpawn();
             Destroy(this.gameObject, 0.5f);
 
+
         }
     }
 

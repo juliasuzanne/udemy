@@ -25,6 +25,11 @@ public class Player : MonoBehaviour
 
     private UIManager _UIManager;
 
+    [SerializeField]
+    private AudioClip _laserSoundClip;
+    [SerializeField]
+    private AudioSource _audioSource;
+
     //bool for isTripleShotActive
     //where do we handle it? Inside fire laser.
     bool isTripleShotActive = false;
@@ -39,6 +44,8 @@ public class Player : MonoBehaviour
 
 
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +56,7 @@ public class Player : MonoBehaviour
         //vector 3 defines all position types
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         _shieldVisualizer.SetActive(false);
         //getting access to spawn manager script
@@ -60,6 +68,15 @@ public class Player : MonoBehaviour
         if (_UIManager == null)
         {
             Debug.LogError("The UI Manager is NULL");
+        }
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("Audio Source on the player is NULL");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
         }
 
     }
@@ -167,9 +184,14 @@ public class Player : MonoBehaviour
                 Instantiate(_tripleShot, transform.position + new Vector3(-.770f, 0.16f, 0), Quaternion.identity);
 
             }
+
+            _audioSource.Play();
             //Time.time is how long the game has been running
 
             //if triple shot active is true, fire three lasers instead of one
+
+            //play the laser audio clip
+            //variable to store the audio clip, figure out how to play it
 
     }
 
@@ -185,6 +207,7 @@ public class Player : MonoBehaviour
         {
         _lives -= 1;
         _UIManager.UpdateLives(_lives);
+
 
         if (_lives < 1)
         {

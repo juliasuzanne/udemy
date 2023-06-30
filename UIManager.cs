@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     GameManager _gameManager;
 
-
+    public SaveObject so;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,10 @@ public class UIManager : MonoBehaviour
         
         _livesImage.sprite = _lifeSprites[3];
         _score = 50;
+        so.playerPoints = _score;
+        so.playerLives = 3;
         _scoreText.text = "Score: " + _score;
+
         
     }
 
@@ -75,6 +78,17 @@ public class UIManager : MonoBehaviour
         _gameManager.ResumeGame();
     }
 
+    public void SaveGame(){
+        SaveManager.Save(so);
+    }
+
+    public void LoadGame(){
+        so = SaveManager.Load();
+        UpdateLives(so.playerLives);
+        _score = so.playerPoints;
+
+    }
+
     public void MainMenu(){
         _panel.SetActive(false);
         SceneManager.LoadScene("MainMenu");
@@ -84,6 +98,8 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int currentLives)
     {
         _livesImage.sprite = _lifeSprites[currentLives];
+        so.playerLives = currentLives;
+
     }
 
     public void PlayerDeath()
@@ -107,6 +123,8 @@ public class UIManager : MonoBehaviour
 
     public void AddPoints(int numToAdd){
         _score += numToAdd;
+        so.playerPoints = _score;
+
     }
 
 }
