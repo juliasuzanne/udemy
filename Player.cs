@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip _laserSoundClip;
     [SerializeField]
+    private AudioClip _powerUpSoundClip;
+
+    [SerializeField]
     private AudioSource _audioSource;
 
     //bool for isTripleShotActive
@@ -96,26 +99,50 @@ public class Player : MonoBehaviour
 
     public void SpeedBoost()
     {
+        _audioSource.clip = _powerUpSoundClip;
+        _audioSource.Play();
         StartCoroutine("SpeedBoostActivate");
     }
 
     IEnumerator SpeedBoostActivate()
     {
         _speed += 5f;
+        yield return new WaitForSeconds(0.5f);
+         _audioSource.clip = _laserSoundClip;
         yield return new WaitForSeconds(5f);
         _speed -= 5f;
     }
 
     public void ShieldsPowerUp(){
+        _audioSource.clip = _powerUpSoundClip;
+        _audioSource.Play();
         StartCoroutine("ShieldsWorking");
     }
 
     IEnumerator ShieldsWorking(){
         isShieldActive = true;
         _shieldVisualizer.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+         _audioSource.clip = _laserSoundClip;
+
         yield return new WaitForSeconds(20f);
         isShieldActive = false;
         _shieldVisualizer.SetActive(false);
+
+    }
+
+    public void TripleShotActivate(){
+        _audioSource.clip = _powerUpSoundClip;
+        _audioSource.Play();
+        StartCoroutine("TripleShot");
+    }
+
+    IEnumerator TripleShot(){
+        isTripleShotActive = true;
+        yield return new WaitForSeconds(0.5f);
+         _audioSource.clip = _laserSoundClip;
+        yield return new WaitForSeconds(5f);
+        isTripleShotActive = false;
 
     }
 
@@ -159,16 +186,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void TripleShotActivate(){
-        StartCoroutine("TripleShot");
-    }
-
-    IEnumerator TripleShot(){
-        isTripleShotActive = true;
-        yield return new WaitForSeconds(5f);
-        isTripleShotActive = false;
-
-    }
 
     void FireLaser() {
         

@@ -15,6 +15,7 @@ public class Powerup : MonoBehaviour
     //2 = Shields
     [SerializeField]
     private int _powerupID;
+    [SerializeField]
 
 
     // Start is called before the first frame update
