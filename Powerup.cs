@@ -5,7 +5,7 @@ using UnityEngine;
 public class Powerup : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = -3f;
+    private float _speed = 3f;
 
     private Player _player;
 
@@ -39,7 +39,7 @@ public class Powerup : MonoBehaviour
         //when we leave the screen, destroy this object
         transform.Translate(new Vector3(0, _speed, 0) * Time.deltaTime);
 
-        if (transform.position.y < -8)
+        if (transform.position.y > 8)
         {
             //
             Destroy(this.gameObject);

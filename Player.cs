@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         //take the current position = new position (0, 0, 0)
         //scripts get added as components
         // access other components when dragged in
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(0, 5, 0);
         //vector 3 defines all position types
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -164,13 +164,13 @@ public class Player : MonoBehaviour
         //to clamp instead of using the following if/else:
         //transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3, 0), transform.position.z)
 
-        if (transform.position.y > 0)
+        if (transform.position.y > 7)
+        {
+            transform.position = new Vector3(transform.position.x, 7, transform.position.z);
+        }
+        else if (transform.position.y < 0)
         {
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-        }
-        else if (transform.position.y < -3)
-        {
-            transform.position = new Vector3(transform.position.x, -3, transform.position.z);
         }
 
         //restrain player to horizontal bounds of window
@@ -194,11 +194,11 @@ public class Player : MonoBehaviour
             
             if (isTripleShotActive == false)
             {
-                 Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.7f, 0), Quaternion.identity);
+                 Instantiate(_laserPrefab, transform.position + new Vector3(0, -0.7f, 0), Quaternion.identity);
 
             }
             else {
-                Instantiate(_tripleShot, transform.position + new Vector3(-.770f, 0.16f, 0), Quaternion.identity);
+                Instantiate(_tripleShot, transform.position + new Vector3(-.770f, -1f, 0), Quaternion.identity);
 
             }
 

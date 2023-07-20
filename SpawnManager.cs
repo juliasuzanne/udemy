@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         while (_stopSpawning == false)
         {            
-        Vector3 posToSpawn = new Vector3(Random.Range(-7f, 7f), 7, 0);
+        Vector3 posToSpawn = new Vector3(Random.Range(-7f, 7f), -3, 0);
         GameObject newEnemy = Instantiate(_enemy, posToSpawn, Quaternion.identity);
         newEnemy.transform.parent = _enemyContainer.transform;
         //parent is a type transform, not a gameObject (enemyContainer is a gameObject)
@@ -56,7 +56,7 @@ public class SpawnManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         while(_stopSpawning == false)
         {
-        Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-3f, 3), 7, 0);
+        Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-3f, 3), -3, 0);
         GameObject newPowerUp = Instantiate(_powerUps[Random.Range(0, 3)], posToSpawnPowerUp, Quaternion.identity);
         yield return new WaitForSeconds(10f);
         }

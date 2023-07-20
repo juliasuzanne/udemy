@@ -18,12 +18,12 @@ public class Laser : MonoBehaviour
     void Update()
     {
         //translate laser up
-        transform.Translate(new Vector3(0, _speed, 0) * Time.deltaTime);
+        transform.Translate(new Vector3(0, -(_speed), 0) * Time.deltaTime);
 
         //if laser position > 8 on the y
         //destroy object
 
-        if (transform.position.y > 7.1f)
+        if (transform.position.y < -3.1f)
         {
             //Debug.Log("destroy");
             //this script attached to you can say this.gameObject, gameObject is fine too but this. is explicit

@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
         }
         
         _livesImage.sprite = _lifeSprites[3];
-        _score = 50;
+        _score = 0;
         so.playerPoints = _score;
         so.playerLives = 3;
         _scoreText.text = "Score: " + _score;

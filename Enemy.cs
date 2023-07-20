@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float _enemySpeed = -2f;
+    private float _enemySpeed = 2f;
 
 
     [SerializeField]
@@ -53,10 +53,10 @@ public class Enemy : MonoBehaviour
         //check if bottom at screen, respawn at top with a new random x position
         transform.Translate(new Vector3(0, _enemySpeed, 0) * Time.deltaTime);
 
-        if (transform.position.y < -6)
+        if (transform.position.y > 8)
         {
             float randomX = Random.Range(-7f, 7f);
-            transform.position = (new Vector3(randomX, 6, 0));
+            transform.position = (new Vector3(randomX, -3, 0));
 
         }
 
@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
             _enemySpeed = 0;
             _audioSource.Play();
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.0f);
             Destroy(this.gameObject);}
 
         }
