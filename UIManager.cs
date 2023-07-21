@@ -113,13 +113,19 @@ public class UIManager : MonoBehaviour
     IEnumerator GameOverFlicker(){
         while(true)
        { _gameOverText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
-        _gameOverText.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.25f);}
+        yield return new WaitForSeconds(0.8f);
+        _gameOverText.gameObject.SetActive(true);
+        _restartText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+        }
 
 
 
     }
+
+      public void LoadControls(){
+        SceneManager.LoadScene("Controls");
+   }
 
     public void AddPoints(int numToAdd){
         _score += numToAdd;

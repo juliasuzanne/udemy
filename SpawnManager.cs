@@ -43,7 +43,7 @@ public class SpawnManager : MonoBehaviour
         GameObject newEnemy = Instantiate(_enemy, posToSpawn, Quaternion.identity);
         newEnemy.transform.parent = _enemyContainer.transform;
         //parent is a type transform, not a gameObject (enemyContainer is a gameObject)
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         }
         // always use infinite loops because we can use yield events
         // instantiate referenced object, enemy prefab

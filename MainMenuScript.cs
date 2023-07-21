@@ -9,4 +9,17 @@ public class MainMenuScript : MonoBehaviour
    public void LoadGame(){
         SceneManager.LoadScene("Space");
    }
+
+   public void LoadAbout(){
+        SceneManager.LoadScene("About");
+   }
+
+   public void LoadControls(){
+        SceneManager.LoadScene("Controls");
+   }
+
+      public void LoadMenu(){
+        SceneManager.LoadScene("MainMenu");
+   }
+
 }

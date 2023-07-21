@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisualizer;
 
+    public SaveObject so;
 
 
 
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostActivate()
     {
         _speed += 5f;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
          _audioSource.clip = _laserSoundClip;
         yield return new WaitForSeconds(5f);
         _speed -= 5f;
@@ -120,14 +121,20 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator ShieldsWorking(){
-        isShieldActive = true;
-        _shieldVisualizer.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        // isShieldActive = true;
+        if (_lives < 3){
+         _lives += 1;
+        _UIManager.UpdateLives(_lives);
+        so.playerLives = _lives;
+        }
+
+        // _shieldVisualizer.SetActive(true);
+        yield return new WaitForSeconds(1f);
          _audioSource.clip = _laserSoundClip;
 
         yield return new WaitForSeconds(20f);
-        isShieldActive = false;
-        _shieldVisualizer.SetActive(false);
+        // isShieldActive = false;
+        // _shieldVisualizer.SetActive(false);
 
     }
 
