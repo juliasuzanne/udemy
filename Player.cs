@@ -47,15 +47,17 @@ public class Player : MonoBehaviour
 
     public SaveObject so;
 
+    //handle to player animation
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //take the current position = new position (0, 0, 0)
-        //scripts get added as components
-        // access other components when dragged in
+        //assign handle to player animation
+        //_playerAnimation.Move()
+
         transform.position = new Vector3(0, 5, 0);
         //vector 3 defines all position types
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
